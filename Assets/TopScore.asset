@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e27dfeeba33754b929ec7e5631b39e, type: 3}
   m_Name: TopScore
   m_EditorClassIdentifier: 
+  topScoreResult:
+    DateTime: 15.07.2020 19:28:10
+    Score: 4

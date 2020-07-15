@@ -87,6 +87,7 @@ public class GameManagerScript : MonoBehaviour
     #region public methods
     public void Restart()
     {
+        GenerateLevel();
         ResetScore();
         Ball.SetInteractable(true);
         SwitchGameOverCanvas(false);

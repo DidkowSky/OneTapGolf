@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Globalization;
 using UnityEngine;
+using UnityEditor;
 using Tools;
 
 [CreateAssetMenu(fileName = "TopScore", menuName = "ScoreSystem/TopScore")]
 public class TopScore : ScriptableObject
 {
     #region private variables
-    private Result topScoreResult;
+    [SerializeField]
+    private Result topScoreResult = new Result();
     #endregion
 
     #region public methods
@@ -17,6 +19,7 @@ public class TopScore : ScriptableObject
         {
             topScoreResult.Score = score;
             topScoreResult.DateTime = DateTime.Now.ToString(new CultureInfo("pl-PL"));
+            EditorUtility.SetDirty(this);
         }
     }
 
@@ -34,6 +37,7 @@ public class TopScore : ScriptableObject
     {
         topScoreResult.Score = 0;
         topScoreResult.DateTime = string.Empty;
+        EditorUtility.SetDirty(this);
     }
     #endregion
 }
