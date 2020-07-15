@@ -11,6 +11,7 @@ public class BallScript : MonoBehaviour
     #region private variables
     private DotPool dotPool;
 
+    private bool isInteractable = true;
     private Vector3 startingPosition;
     private float frequency = 1.8f;
     private float magnitude = 0.5f;
@@ -53,9 +54,14 @@ public class BallScript : MonoBehaviour
     #endregion
 
     #region public methods
+    public void SetInteractable(bool interactable)
+    {
+        isInteractable = interactable;
+    }
+
     public void Kick()
     {
-        if (!isMoving)
+        if (isInteractable && !isMoving && frequency < maxFrequency && magnitude > minMagnitude)
         {
             dotPool.ReturnAllObjectsToPool();
             time = 0.0f;
@@ -65,7 +71,7 @@ public class BallScript : MonoBehaviour
 
     public void IncrementKickingStrength()
     {
-        if (!isMoving)
+        if (isInteractable && !isMoving)
         {
             time += Time.deltaTime;
 
@@ -80,14 +86,14 @@ public class BallScript : MonoBehaviour
             {
                 Kick();
             }
-
-            //TODO: to think
         }
     }
 
     public void ResetSettings()
     {
         directionVectorMovementSpeed = 1.0f;
+        frequency = maxFrequency;
+        magnitude = minMagnitude;
     }
 
     public void IncrementDirectionVectorMovementSpeed()
